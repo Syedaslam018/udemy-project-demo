@@ -1,3 +1,4 @@
+const Expense = require('../models/expense');
 const User = require('../models/user')
 //const Cart = require('../models/cart')
 
@@ -18,8 +19,10 @@ exports.postuserData = async (req, res, next) => {
    exports.deleteUserData = async(req, res, next) => {
     const prodId = req.params.productId;
     //console.log(prodId);
-    User.findByPk(prodId)
-    .then((user) => {
-      return user.destroy();
+    Expense.findByPk(prodId)
+    .then((item) => {
+      item.quantity = item.quantity - 2;
+      console.log(item.quantity)
+      item.save();
     })
   }
